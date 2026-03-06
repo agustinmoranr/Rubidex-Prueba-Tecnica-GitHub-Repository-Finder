@@ -1,3 +1,4 @@
+import { CodeXml } from "lucide-react";
 import { RepositoryCard } from "../components/RepositoryCard";
 import { RepositoryList } from "../components/RepositoryList";
 import useRepositoriesQuery from "../hooks/useRepositoriesQuery";
@@ -17,6 +18,15 @@ export function SearchRepositoriesPage() {
 
   return (
     <div className="flex-1 p-8">
+      <div className="flex items-center gap-2 mb-4">
+        <CodeXml className="size-4" />
+        <span>
+          Repositorios de: <strong>{searchedUsername}</strong>
+        </span>
+        <span className="bg-secondary/65 text-secondary-foreground rounded-lg size-5 text-xs font-semibold inline-flex items-center justify-center">
+          {repositories.length}
+        </span>
+      </div>
       <RepositoryList>
         {repositories.map((repository) => {
           return (

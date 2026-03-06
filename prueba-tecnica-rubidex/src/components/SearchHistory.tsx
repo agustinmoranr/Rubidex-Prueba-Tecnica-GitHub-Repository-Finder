@@ -10,7 +10,7 @@ export function SearchHistory() {
     <aside className="border-r border-r-text/15 min-h-full w-69 shrink-0">
       <div className="flex items-center gap-1 py-3 border-b border-text/1 px-4">
         <Clock className="size-4" />
-        <h3>Historial de búsqueda</h3>
+        <h2 className="font-medium">Historial de búsqueda</h2>
         {searchHistory.length > 0 && (
           <span className="bg-accent size-4 rounded-full text-xs text-background font-semibold text-center">
             {searchHistory.length}

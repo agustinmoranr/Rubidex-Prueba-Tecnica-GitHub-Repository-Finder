@@ -1,73 +1,35 @@
-# React + TypeScript + Vite
+<img width="3803" height="1832" alt="image" src="https://github.com/user-attachments/assets/e2def45b-0b4e-4d86-9535-fd0528354da0"  />
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Ejecución del proyecto
 
-Currently, two official plugins are available:
+Una vez descargado o clonado el proyecto:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- npm install para instalar las dependencias del proyecto.
+- npm run dev para ejecutar proyecto en ambiente de desarrollo.
+- npm run build para hacer la construcción y empaquetado del proyecto.
+- npm run preview para ejecutar versión producida por npm run build localmente.
 
-## React Compiler
+# Tech stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React V19
+- Typescript
+- Tailwindcss
+- Zustand (gestión de estado global)
+- tanstack/react-query (Manejo de consultas)
+- Lucide-React (paquetería de iconos)
 
-## Expanding the ESLint configuration
+# Decisiones Técnicas
+## Estructura del proyecto
+<img width="500" height="700" alt="image" src="https://github.com/user-attachments/assets/aca5135c-609f-46d2-a1c4-c60e75143a4f" />
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Decidí utilizar una estructura del proyecto con un enfoque de proximidad de responsabilidades, por ejemplo, la una carpeta components al nivel de la raiz de src
+engloba los componentes más generales del proyecto. Sin embargo, dentro de pages, cada página es una carpeta, que también puede repetir el mismo patrón de carpetas que src,
+dependiendo de la complejidad de la pantalla.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Uso de Zustand
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Debido a la arquitectura de los componentes por la que opté para la versión final del reto técnico, ésta se beneficia mucho de un estado global, ya que dicho estado se consume
+y muta en múltiples partes del árbol de componentes. Si bien el reto se podría resolver con Context API, opte por utilizar Zustand para llevar el reto a un enfoque más productivo
+donde zustand optimiza las mutaciones de estado evitando rerenders innecesarios a lo largo del árbol de componentes.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```

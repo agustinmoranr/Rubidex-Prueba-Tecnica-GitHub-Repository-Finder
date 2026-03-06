@@ -1,7 +1,7 @@
 import { useEffect, useState, type SubmitEventHandler } from 'react';
-import { SearchInput } from './SearchInput';
-import Button from './ui/Button';
-import { useSearchStore } from '../stores/useSearchStore';
+import { SearchInput } from '../../../components/SearchInput';
+import Button from '../../../components/ui/Button';
+import { useSearchStore } from '../../../stores/useSearchStore';
 
 export function SearchRepositoriesForm() {
 	const searchedUsername = useSearchStore((state) => state.searchedUsername);

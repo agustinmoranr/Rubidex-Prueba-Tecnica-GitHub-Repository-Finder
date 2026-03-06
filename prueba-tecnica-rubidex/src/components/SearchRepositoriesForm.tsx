@@ -7,7 +7,6 @@ export function SearchRepositoriesForm() {
   const searchedUsername = useSearchStore((state) => state.searchedUsername);
   const setSearchUsername = useSearchStore((state) => state.setSearchUsername);
   const [username, setUsername] = useState<string>("");
-  console.log({ searchedUsername, username });
 
   const handleSubmit: SubmitEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
